@@ -3,9 +3,21 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router,AuthenticatedRoute, Route, Link } from "react-router-dom";
 import Login from './login/index';
+import Db from './Db';
+
 
 
 class App extends Component {
+
+componentDidMount(){
+	Db.put('update/43692',{"name":"Aakash Welcome","salary":"123","age":"23"}).then(data=>{
+		console.log(data.data);
+	}).catch(data1=>{
+		console.log(data1);
+	})
+}
+
+
   render() {
     return (
       <div className="App">

@@ -1,5 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export default () => {
-  return axios.create({baseUrl: 'https://domain.com/foo/bar'})
-}
+var axiosInstance = axios.create({
+  baseURL: 'http://dummy.restapiexample.com/api/v1/',
+});
+
+module.exports = axiosInstance;
