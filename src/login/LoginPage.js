@@ -8,7 +8,14 @@ export default class Login extends Component {
     	super(props); 
     	this.state = { email: '9443947839',password: '9443947839','TransportName':''};
     	this.LoginSubmit = this.LoginSubmit.bind(this);
+    	this.handleChange = this.handleChange.bind(this);
     }
+
+    handleChange(event) {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    }
+
 
 	LoginSubmit(event){
 		event.preventDefault();
@@ -27,7 +34,7 @@ export default class Login extends Component {
 	}
 
   render() {
-
+        const { email, password } = this.state;
     return (
 		<main className="login-form">
 		{this.state.TransportName}
@@ -41,13 +48,13 @@ export default class Login extends Component {
 		                            <div className="form-group row">
 		                                <label for="email_address" className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 		                                <div className="col-md-6">
-		                                    <input type="text" className="form-control" value={this.state.email} name="email"/>
+		                                    <input type="text" className="form-control" value={email} onChange={this.handleChange} name="email"/>
 		                                </div>
 		                            </div>
 		                            <div className="form-group row">
 		                                <label for="password" className="col-md-4 col-form-label text-md-right">Password</label>
 		                                <div className="col-md-6">
-		                                    <input type="password" className="form-control" value={this.state.password} name="password"/>
+		                                    <input type="password" className="form-control" value={password} onChange={this.handleChange} name="password"/>
 		                                </div>
 		                            </div>
 		                            <div className="col-md-6 offset-md-4">
