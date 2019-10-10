@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import Login from './login/LoginPage';
-// import Db from './Db';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './Owner/Master/Client/ClientPage';
 
+class App extends React.Component {
 
-
-class App extends Component {
-
-// constructor(props) {
-//     super(props); 
-// }
+constructor(props) {
+    super(props); 
+    console.log(props);
+}
 
 
 componentDidMount(){
@@ -29,11 +28,14 @@ componentDidMount(){
 
   render() {
     return (
+
       <div className="App">
-
-
+          <BrowserRouter>
+              <Switch>
+                <Route exact path="/home" component={Home} />
+              </Switch>
+            </BrowserRouter>
           <div>Login Page<Login />.</div>
-
       </div>
 
 

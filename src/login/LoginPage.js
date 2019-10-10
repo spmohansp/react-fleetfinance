@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Login.css';
 import DB from '../Db';
+// import Home from '../Owner/Master/Client/ClientPage';
 
 
-export default class Login extends Component {
-	constructor(props) {
-    	super(props); 
+export default class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(this.props);
     	this.state = { email: '9443947839',password: '9443947839','TransportName':''};
     	this.LoginSubmit = this.LoginSubmit.bind(this);
-    	this.handleChange = this.handleChange.bind(this);
+    	this.HandleChange = this.HandleChange.bind(this);
     }
 
-    handleChange(event) {
+    HandleChange(event) {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
@@ -25,11 +27,12 @@ export default class Login extends Component {
 	            localStorage.setItem("FleetUserData", JSON.stringify(data.data.data))
 	            console.log(JSON.parse(localStorage.getItem('FleetUserData')));
 	            this.setState({TransportName : data.data.data.transportName});
+                this.props.history.push('/home');
 			}else{
 				console.log('error');
 			}
-		}).catch(data1=>{
-			console.log(data1);
+		}).catch(err=>{
+			console.log(err);
 		})
 	}
 
@@ -46,17 +49,17 @@ export default class Login extends Component {
 		                    <div className="card-body">
 		                        <form onSubmit={this.LoginSubmit}>
 		                            <div className="form-group row">
-		                                <label for="email_address" className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+		                                <label className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 		                                <div className="col-md-6">
-		                                    <input type="text" className="form-control" value={email} onChange={this.handleChange} name="email"/>
+		                                    <input type="text" className="form-control" value={email} onChange={this.HandleChange} name="email"/>
 		                                </div>
 		                            </div>
 		                            <div className="form-group row">
-		                                <label for="password" className="col-md-4 col-form-label text-md-right">Password</label>
+		                                <label className="col-md-4 col-form-label text-md-right">Password</label>
 		                                <div className="col-md-6">
-		                                    <input type="password" className="form-control" value={password} onChange={this.handleChange} name="password"/>
+		                                    <input type="password" className="form-control" value={password} onChange={this.HandleChange} name="password"/>		                                
 		                                </div>
-		                            </div>
+	                            	</div>
 		                            <div className="col-md-6 offset-md-4">
 		                                <button type="submit" className="btn btn-primary">Login</button>
 		                            </div>
@@ -67,8 +70,6 @@ export default class Login extends Component {
 		        </div>
 		    </div>
 		</main>
-
-
     );
   }
 }
